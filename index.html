@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kang Ahlul Portrait Studio - Jasa Video Shooting Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -16,6 +17,7 @@
             background-color: #000;
             color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -33,6 +35,7 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 15px 0;
+            transition: all 0.3s ease;
         }
 
         .header-content {
@@ -48,6 +51,10 @@
             font-weight: bold;
         }
 
+        .logo img {
+            height: 55px;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -57,18 +64,30 @@
         nav a {
             color: #fff;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 300;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             transition: color 0.3s;
+            font-size: 1rem;
         }
 
         nav a:hover {
             color: #ff6b35;
         }
 
+        .mobile-nav-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
+            min-height: 600px;
             background-size: cover;
             background-position: center;
             display: flex;
@@ -76,22 +95,45 @@
             justify-content: center;
             text-align: center;
             position: relative;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
+        font-size: clamp(1.4rem, 4vw, 2rem); /* fleksibel dan pas di semua layar */
+        margin-bottom: 10px;
+        line-height: 1.2;
+        white-space: nowrap;    /* Desktop: satu baris */
+        overflow: hidden;
+        text-align: center;
         }
+
+        /* Tambahkan ini ke parent-nya */
+        .hero-content {
+        text-align: center;
+        }
+
+        /* Mobile: izinkan wrap */
+        @media (max-width: 768px) {
+        .hero-content h1 {
+            white-space: normal;
+            font-size: 1.5rem;     /* bisa kamu sesuaikan lagi */
+        }
+        }
+
 
         .hero-content .studio-name {
             color: #ff6b35;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             margin-bottom: 10px;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             margin-bottom: 40px;
         }
 
@@ -99,11 +141,12 @@
             display: inline-block;
             background: #ff6b35;
             color: #fff;
-            padding: 15px 30px;
+            padding: 12px 25px;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
             transition: all 0.3s;
+            font-size: 1rem;
         }
 
         .cta-button:hover {
@@ -113,14 +156,14 @@
 
         /* Services Section */
         .services {
-            padding: 100px 0;
+            padding: 80px 0;
             background: #111;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 40px;
             color: #ff6b35;
         }
 
@@ -128,12 +171,12 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .service-card {
             background: #222;
-            padding: 40px 30px;
+            padding: 30px;
             border-radius: 10px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -147,9 +190,15 @@
         }
 
         .service-icon {
-            font-size: 3rem;
             margin-bottom: 20px;
             color: #ff6b35;
+        }
+
+        .service-icon img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
         }
 
         .service-card h3 {
@@ -164,7 +213,7 @@
 
         /* Pricing Section */
         .pricing {
-            padding: 100px 0;
+            padding: 80px 0;
             background: #0a0a0a;
         }
 
@@ -172,13 +221,13 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .pricing-card {
             background: #222;
             border-radius: 10px;
-            padding: 40px 30px;
+            padding: 30px;
             text-align: center;
             position: relative;
             border: 2px solid #333;
@@ -247,15 +296,15 @@
 
         /* Portfolio Section */
         .portfolio {
-            padding: 100px 0;
+            padding: 80px 0;
             background: #111;
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .portfolio-item {
@@ -279,8 +328,14 @@
             color: #fff;
         }
 
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .portfolio-content {
-            padding: 25px;
+            padding: 20px;
         }
 
         .portfolio-content h3 {
@@ -296,86 +351,92 @@
 
         /* About Section */
         .about {
-            padding: 100px 0;
+            padding: 80px 0;
             background: #0a0a0a;
         }
 
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            grid-template-columns: 1fr;
+            gap: 40px;
             align-items: center;
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .about-text h3 {
             color: #ff6b35;
-            font-size: 2rem;
-            margin-bottom: 30px;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 20px;
         }
 
         .about-text p {
             color: #ccc;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.8;
         }
 
         .about-features {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 40px;
+            gap: 20px;
+            margin-top: 30px;
         }
 
         .feature-item {
             text-align: center;
+            padding: 15px;
+            background: #222;
+            border-radius: 8px;
         }
 
         .feature-item h4 {
             color: #ff6b35;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 10px;
         }
 
         .about-image {
-        width: 100%;
-        max-width: 800px;
-        height: calc(800px * 9 / 16); /* atau langsung: height: 450px; */
-        background-image: url('gambar 11.png');
-        background-size: cover;
-        background-position: center 90%;
-        background-repeat: no-repeat;
-        border-radius: 10px;
-        margin: 0 auto;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            }
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 4 / 3;
+            background-image: url('gambar 11.png');
+            background-size: cover;
+            background-position: center 90%; /* Naikkan fokus gambar */
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
 
 
         /* Contact Section */
         .contact {
-            padding: 100px 0;
+            padding: 80px 0;
             background: #111;
+            position: relative;
         }
 
         .contact-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            margin-top: 50px;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-info h3 {
             color: #ff6b35;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+            margin-bottom: 20px;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding: 15px;
-            background: #222;
+            background: rgba(34, 34, 34, 0.8);
             border-radius: 8px;
         }
 
@@ -387,14 +448,14 @@
         }
 
         .contact-buttons {
-            display: flex;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             margin-top: 30px;
         }
 
         .contact-btn {
-            flex: 1;
-            padding: 15px;
+            padding: 12px;
             background: #ff6b35;
             color: #fff;
             text-decoration: none;
@@ -402,6 +463,10 @@
             border-radius: 5px;
             font-weight: bold;
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .contact-btn:hover {
@@ -420,7 +485,7 @@
         /* Footer */
         footer {
             background: #000;
-            padding: 50px 0 20px;
+            padding: 40px 0 20px;
             text-align: center;
         }
 
@@ -444,14 +509,14 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 30px;
         }
 
         .social-link {
             display: inline-block;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: #222;
             border-radius: 50%;
             display: flex;
@@ -460,6 +525,7 @@
             color: #fff;
             text-decoration: none;
             transition: all 0.3s;
+            font-size: 1.2rem;
         }
 
         .social-link:hover {
@@ -471,35 +537,96 @@
             border-top: 1px solid #333;
             padding-top: 20px;
             color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Section Images */
+        .section-img {
+            display: block;
+            margin: 0 auto 40px auto;
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
+            header {
+                padding: 10px 0;
             }
 
-            .hero-content .studio-name {
-                font-size: 1.5rem;
+            .logo img {
+                height: 45px;
             }
 
             nav ul {
                 display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 80px 20px;
+                gap: 25px;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
             }
 
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
+            nav ul.active {
+                transform: translateX(0);
+                display: flex;
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            .hero {
+                margin-top: 60px;
+                min-height: 500px;
+            }
+
+            .section-title {
+                margin-bottom: 30px;
             }
 
             .contact-buttons {
-                flex-direction: column;
+                grid-template-columns: 1fr;
             }
 
-            .pricing-grid,
-            .services-grid {
+            .about-features {
                 grid-template-columns: 1fr;
+            }
+
+            .mobile-menu-close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 2rem;
+                background: none;
+                border: none;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 400px;
+            }
+
+            .service-icon img {
+                height: 200px;
+            }
+
+            .portfolio-image {
+                height: 180px;
             }
         }
 
@@ -531,15 +658,17 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="logo.png" alt="Kang Ahlul Portrait Studio Logo" style="height:55px;">
+                    <img src="logo.png" alt="Kang Ahlul Portrait Studio Logo">
                 </div>
+                <button class="mobile-nav-toggle" aria-label="Menu">☰</button>
                 <nav>
-                    <ul>
+                    <ul id="mobileMenu">
                         <li><a href="#beranda">BERANDA</a></li>
                         <li><a href="#karya-kami">KARYA KAMI</a></li>
                         <li><a href="#layanan-kami">LAYANAN KAMI</a></li>
                         <li><a href="#tentang-kami">TENTANG KAMI</a></li>
                         <li><a href="#hubungi-kami">HUBUNGI KAMI</a></li>
+                        <button class="mobile-menu-close">×</button>
                     </ul>
                 </nav>
             </div>
@@ -558,27 +687,28 @@
 
     <!-- Services Section -->
     <section id="layanan-kami" class="services">
-        <img src="gambar 2.png" alt="Layanan Header" style="display: block; margin: 0 auto 40px auto; width: 100%; max-width: 1000px; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        <img src="gambar 2.png" alt="Layanan Header" style="display: block; margin: 0 auto 40px auto; width: 60%; max-width: 1000px; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
         <div class="container">
             <h2 class="section-title">Layanan Kami Meliputi</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="gambar 3.png" alt="Wedding Documentation" style="width:100%; height:500px; object-fit:cover; border-radius:10px;">
+                        <img src="gambar 3.png" alt="Wedding Documentation">
                     </div>
                     <h3>Acara Pernikahan</h3>
                     <p>Momen pernikahan sekali seumur hidup sebaiknya Anda abadikan dengan sebaik mungkin. Kami menawarkan layanan fotografi, videografi, serta photo album berkualitas.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="gambar 4.png" alt="Corporate Event" style="width:100%; height:500px; object-fit:cover; border-radius:10px;">
+                        <img src="gambar 4.png" alt="Corporate Event">
                     </div>
                     <h3>Acara Perusahaan</h3>
                     <p>Dokumentasi acara perusahaan seperti grand opening, launching produk, seminar, pelatihan, bazaar, job fair, gathering, outbound karyawan.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"></div>
-                    <img src="gambar 5.png" alt="Corporate Event" style="width:100%; height:500px; object-fit:cover; border-radius:10px;">
+                    <div class="service-icon">
+                        <img src="gambar 5.png" alt="Organizational Event">
+                    </div>
                     <h3>Acara Organisasi</h3>
                     <p>Dokumentasi acara organisasi dengan berbagai peserta tamu dan variasi tema acara yang berbeda dapat kami bantu abadikan dalam dokumentasi yang menarik.</p>
                 </div>
@@ -633,7 +763,7 @@
                         <li>Durasi Pengerjaan 14 hari</li>
                     </ul>
                 </div>
-                 <div class="pricing-card featured">
+                <div class="pricing-card featured">
                     <div class="pricing-header">
                         <div class="service-icon">🏆</div>
                         <h3>PROFESIONAL</h3>
@@ -654,20 +784,19 @@
                         <li>Durasi Pengerjaan 14 hari</li>
                     </ul>
                 </div>
-                    </ul>
-                </div>
             </div>
         </div>
     </section>
 
+    <!-- Portfolio Section -->
     <section id="karya-kami" class="portfolio">
-        <img src="gambar 10.png" alt="Capture The Moment" style="display: block; margin: 0 auto 40px auto; width: 50%; max-width: 1000px; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        <img src="gambar 10.png" alt="Capture The Moment" style="display: block; margin: 0 auto 40px auto; width: 60%; max-width: 1000px; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
         <div class="container">
             <h2 class="section-title">Latest Project</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="gambar 6.png" alt="Wedding Documentation" style="width:100%; height:200px; object-fit:cover;">
+                        <img src="gambar 6.png" alt="Wedding Documentation">
                     </div>
                     <div class="portfolio-content">
                         <h3>WEDDING DOCUMENTATION</h3>
@@ -676,7 +805,7 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="gambar 7.png" alt="Corporate Event" style="width:100%; height:200px; object-fit:cover;">
+                        <img src="gambar 7.png" alt="Corporate Event">
                     </div>
                     <div class="portfolio-content">
                         <h3>CORPORATE EVENT</h3>
@@ -685,7 +814,7 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="gambar 5.png" alt="Organizational Documentation" style="width:100%; height:200px; object-fit:cover;">
+                        <img src="gambar 5.png" alt="Organizational Documentation">
                     </div>
                     <div class="portfolio-content">
                         <h3>ORGANIZATIONAL DOCUMENTATION</h3>
@@ -694,7 +823,7 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="gambar 9.png" alt="Organisasi Gathering" style="width:100%; height:200px; object-fit:cover;">
+                        <img src="gambar 9.png" alt="Organisasi Gathering">
                     </div>
                     <div class="portfolio-content">
                         <h3>Organisasi Gathering</h3>
@@ -703,7 +832,7 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="gambar 8.png" alt="Corporate Outbound" style="width:100%; height:200px; object-fit:cover;">
+                        <img src="gambar 8.png" alt="Corporate Outbound">
                     </div>
                     <div class="portfolio-content">
                         <h3>CORPORATE OUTBOUND</h3>
@@ -712,7 +841,7 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="gambar 12.png" alt="School Documentation" style="width:100%; height:200px; object-fit:cover;">
+                        <img src="gambar 12.png" alt="School Documentation">
                     </div>
                     <div class="portfolio-content">
                         <h3>SCHOOL DOCUMENTATION</h3>
@@ -722,7 +851,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- About Section -->
     <section id="tentang-kami" class="about">
@@ -752,13 +880,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
+                <div class="about-image" style="background-image: url('gambar 11.png');"></div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="hubungi-kami" class="contact" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.158)), url('gambar 13.png') no-repeat center center/cover;">
+    <section id="hubungi-kami" class="contact" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), url('gambar 13.png') no-repeat center center/cover;">
         <div class="container">
             <h2 class="section-title">HUBUNGI KAMI</h2>
             <div class="contact-content">
@@ -775,7 +903,7 @@
                         <div class="icon">📱</div>
                         <div>
                             <strong>WhatsApp:</strong><br>
-                            +62 857-5515-2579
+                            +62 857-5515-2578
                         </div>
                     </div>
                     <div class="contact-item">
@@ -786,8 +914,12 @@
                         </div>
                     </div>
                     <div class="contact-buttons">
-                        <a href="tel:+6285755152579" class="contact-btn">📞 Hubungi Kami</a>
-                        <a href="https://wa.me/6285755152579" class="contact-btn secondary">💬 Klik Disini</a>
+                        <a href="tel:+6285755152578" class="contact-btn">
+                            <i class="fas fa-phone-alt"></i> Hubungi Kami
+                        </a>
+                        <a href="https://wa.me/6285755152578" class="contact-btn secondary">
+                            <i class="fab fa-whatsapp"></i> Klik Disini
+                        </a>
                     </div>
                 </div>
                 <div class="about-text">
@@ -797,3 +929,82 @@
                     <p><strong>Videography:</strong> Kami turut menawarkan jasa videographer dengan menggunakan peralatan video shooting yang modern serta canggih. Durasi waktu bisa disesuaikan dengan kebutuhan Anda dan kami memastikan hasil shooting yang kreatif, unik dan menarik.</p>
                     
                     <p><strong>Foto & Video Editing:</strong> Bagi Anda yang juga butuh skill foto dan video editing, maka Anda tidak akan menyesal menghubungi Photology yang menawarkan jasa editing foto maupun video terbaik. Editing dikerjakan oleh crew kami yang benar-benar mengerti dan sudah berpengalaman menghasilkan hasil editing yang memuaskan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Kang Ahlul Portrait Studio</div>
+                <p class="footer-text">Mengabadikan momen berharga Anda dengan profesionalisme dan kreativitas terbaik sejak 2010</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Kang Ahlul Portrait Studio. Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script untuk Toggle Menu Mobile -->
+    <script>
+        const navToggle = document.querySelector('.mobile-nav-toggle');
+        const navMenu = document.querySelector('nav ul');
+        const navLinks = document.querySelectorAll('nav a');
+        const closeButton = document.querySelector('.mobile-menu-close');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        closeButton.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close menu when clicking on a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.style.padding = window.scrollY > 50 ? '10px 0' : '15px 0';
+            header.style.background = window.scrollY > 50 ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 0.9)';
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections
+        document.querySelectorAll('.section-title, .service-card, .pricing-card, .portfolio-item, .about-content, .contact-content').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
